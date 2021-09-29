@@ -1,0 +1,8 @@
+#include "script_component.hpp"
+
+#include "gui\parentCommands.hpp"
+#include "gui\guiMacros.hpp"
+#include "gui\mainWindow.hpp"
+
+#include "CfgEventHandlers.hpp"
+#include "CfgFunctions.hpp"
