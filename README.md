@@ -1,1 +1,1 @@
-# GC_GMConsole
+# Global Conflicts - G.M. Console Rewrite
