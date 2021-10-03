@@ -1,8 +1,8 @@
-// class Extended_PreInit_EventHandlers {
-//   class ADDON {
-//     init = "call compile preProcessFileLineNumbers 'XEH_PreInit.sqf';";
-//   };
-// };
+class Extended_PreInit_EventHandlers {
+  class ADDON {
+    init = "call compile preProcessFileLineNumbers 'XEH_PreInit.sqf';";
+  };
+};
 
 
 class Extended_Init_EventHandlers {

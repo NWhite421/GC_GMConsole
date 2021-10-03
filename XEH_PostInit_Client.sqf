@@ -13,7 +13,7 @@ if (true) then {
   [
     COMPONENT_NAME,
     QGVAR(OpenMenu),
-    "$STR_A3_nbw_keybind_OpenConsole",
+    CSTRING(OpenConsole),
     {call FUNC(OpenConsole)},
     {},
     [DIK_APPS, [false, false, false]]
@@ -22,8 +22,17 @@ if (true) then {
   // ACE Actions
   // GM Console
   // TODO: Impliment GM Access showing category
-  _actionCategory = [QGVAR(GMCategory), (localize "STR_A3_nbw_ace_GMConsole"), "", {}, {true}] call ace_interact_menu_fnc_createAction;
-  _openMenu = [QGVAR(GMOpenConsole), (localize "STR_A3_nbw_ace_OpenConsole"), "", {call FUNC(OpenConsole);}, {true}] call ace_interact_menu_fnc_createAction;
+  _actionCategory = [QGVAR(GMCategory), localize LSTRING(GameModerator), "", {}, {true}] call ace_interact_menu_fnc_createAction;
+  _openMenu = [QGVAR(GMOpenConsole), localize LSTRING(OpenConsole), "", {call FUNC(OpenConsole);}, {true}] call ace_interact_menu_fnc_createAction;
   [player, 1, ["ACE_SelfActions"], _actionCategory] call ace_interact_menu_fnc_addActionToObject;
-    [player, 1, ["ACE_SelfActions", QGVAR(GMCategory)], _openMenu] call ace_interact_menu_fnc_addActionToObject;
+  [player, 1, ["ACE_SelfActions", QGVAR(GMCategory)], _openMenu] call ace_interact_menu_fnc_addActionToObject;
+    
 };
+
+["CBA_SettingChanged", {
+    params ["_setting", "_value"];
+	  if ((_setting find "gmc_main") == -1) exitWith {};
+	  player setVariable [_setting, _value];
+    systemChat format ["%1 = %2", _setting, _value];
+	copyToClipboard str _setting;
+}] call CBA_fnc_addEventHandler;

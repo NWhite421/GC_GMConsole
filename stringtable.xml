@@ -1,172 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="nbw_gm">
-  <Package name="main_window">
-    <Container name="Keybinds">
-      <Key ID="STR_A3_nbw_keybind_OpenConsole">
-        <Original>Open Map Monitor</Original>
-        <English>Open Map Monitor</English>
-      </Key>
-    </Container>
-    <Container name="ACE Actions">
-      <Key ID="STR_A3_nbw_ace_GMConsole">
+<Project name="gmc">
+  <Package name="main">
+    <Container name="General">
+      <Key ID="STR_gmc_main_GameModerator">
         <Original>Game Moderator</Original>
         <English>Game Moderator</English>
       </Key>
-      <Key ID="STR_A3_nbw_ace_OpenConsole">
+      <Key ID="STR_gmc_main_OpenConsole">
         <Original>Open Console</Original>
         <English>Open Console</English>
       </Key>
-    </Container>
-    <Container name="main">
-      <Key ID="STR_A3_nbw_gm_map_mapMonitor">
+      <Key ID="STR_gmc_main_MapMonitor">
         <Original>Map Monitor</Original>
         <English>Map Monitor</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_Title">
+    </Container>
+    <Container name="Settings">
+      <Key ID="STR_gmc_main_manIconTitle">
+        <Original>Man Icon Size</Original>
+        <English>Man Icon Size</English>
+      </Key>
+      <Key ID="STR_gmc_main_manIconTooltip">
+        <Original>The size of a man's icon on the map monitor.</Original>
+        <English>The size of a man's icon on the map monitor.</English>
+      </Key>
+      <Key ID="STR_gmc_main_vehicleIconTitle">
+        <Original>Vehicle Icon Size</Original>
+        <English>Vehicle Icon Size</English>
+      </Key>
+      <Key ID="STR_gmc_main_vehicleIconTooltip">
+        <Original>The size of a vehicle's icon on the map monitor.</Original>
+        <English>The size of a vehicles's icon on the map monitor.</English>
+      </Key>
+      <Key ID="STR_gmc_main_TextSizeTitle">
+        <Original>Font Size</Original>
+        <English>Font Size</English>
+      </Key>
+      <Key ID="STR_gmc_main_TextSizeTooltip">
+        <Original>The font size next to icons on the map.</Original>
+        <English>The font size next to icons on the map.</English>
+      </Key>
+      <Key ID="STR_gmc_main_InjuredColorTitle">
+        <Original>Injured Man Color</Original>
+        <English>Injured Man Color</English>
+      </Key>
+      <Key ID="STR_gmc_main_InjuredColorTooptip">
+        <Original>The color displayed when a unit is unconscious.</Original>
+        <English>The color displayed when a unit is unconscious.</English>
+      </Key>
+    </Container>
+    <Container name="MainConsole">
+      <Key ID="STR_gmc_main_Title">
         <Original>Arma 3 Game Moderator Console</Original>
         <English>Arma 3 Game Moderator Console</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_close">
+      <Key ID="STR_gmc_main_close">
         <Original>X</Original>
         <English>X</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_MapProperties_Title">
+      <Key ID="STR_gmc_main_MapProperties_Title">
         <Original>Map Statistics</Original>
         <English>Map Statistics</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_Players_Title">
+      <Key ID="STR_gmc_main_Players_Title">
         <Original>Players</Original>
         <English>Players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_search_tooltip">
+      <Key ID="STR_gmc_main_players_search_tooltip">
         <Original>Enter a players name to search for them.</Original>
         <English>Enter a players name to search for them.</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_player_search_submit">
+      <Key ID="STR_gmc_main_player_search_submit">
         <Original>S</Original>
         <English>S</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_player_search_clear">
+      <Key ID="STR_gmc_main_player_search_clear">
         <Original>X</Original>
         <English>X</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_player_search_clear_tooltip">
+      <Key ID="STR_gmc_main_player_search_clear_tooltip">
         <Original>Clear</Original>
         <English>Clear</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_blufor">
+      <Key ID="STR_gmc_main_players_filter_blufor">
         <Original>BLUFOR</Original>
         <English>BLUFOR</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_blufor_tooltip">
+      <Key ID="STR_gmc_main_players_filter_blufor_tooltip">
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_opfor">
+      <Key ID="STR_gmc_main_players_filter_opfor">
         <Original>OPFOR</Original>
         <English>OPFOR</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_opfor_tooltip">
+      <Key ID="STR_gmc_main_players_filter_opfor_tooltip">
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_indfor">
+      <Key ID="STR_gmc_main_players_filter_indfor">
         <Original>INDFOR</Original>
         <English>INDFOR</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_indfor_tooltip">
+      <Key ID="STR_gmc_main_players_filter_indfor_tooltip">
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_civfor">
+      <Key ID="STR_gmc_main_players_filter_civfor">
         <Original>CIVFOR</Original>
         <English>CIVFOR</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_civfor_tooltip">
+      <Key ID="STR_gmc_main_players_filter_civfor_tooltip">
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_includeAI">
+      <Key ID="STR_gmc_main_players_filter_includeAI">
         <Original>Include A.I.</Original>
         <English>Include A.I.</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_players_filter_includeAI_tooltip">
+      <Key ID="STR_gmc_main_players_filter_includeAI_tooltip">
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_actions_title">
+      <Key ID="STR_gmc_main_actions_title">
         <Original>Actions</Original>
         <English>Actions</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph1">
-        <Original>placeholder action 1</Original>
-        <English>placeholder action 1</English>
+      <Key ID="STR_gmc_main_placeholder">
+        <Original>placeholder</Original>
+        <English>placeholder</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph2">
-        <Original>placeholder action 2</Original>
-        <English>placeholder action 2</English>
-      </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph3">
-        <Original>placeholder action 3</Original>
-        <English>placeholder action 3</English>
-      </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph4">
-        <Original>placeholder action 4</Original>
-        <English>placeholder action 4</English>
-      </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph5">
-        <Original>placeholder action 5</Original>
-        <English>placeholder action 5</English>
-      </Key>
-      <Key ID="STR_A3_nbw_gm_actions_ph6">
-        <Original>placeholder action 6</Original>
-        <English>placeholder action 6</English>
-      </Key>
-      <Key ID="STR_A3_nbw_gm_gear_title">
+      <Key ID="STR_gmc_main_gear_title">
         <Original>Gear Spawner</Original>
         <English>Gear Spawner</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_count">
+      <Key ID="STR_gmc_main_gear_count">
         <Original>1</Original>
         <English>1</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_count_tooltip">
+      <Key ID="STR_gmc_main_gear_count_tooltip">
         <Original>Amount to add</Original>
         <English>Amount to add</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_add">
+      <Key ID="STR_gmc_main_gear_add">
         <Original>Add</Original>
         <English>Add</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_removeOne">
+      <Key ID="STR_gmc_main_gear_removeOne">
         <Original>Remove One</Original>
         <English>Remove One</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_RemoveLine">
+      <Key ID="STR_gmc_main_gear_RemoveLine">
         <Original>Remove Line</Original>
         <English>Remove Line</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_clearLine">
+      <Key ID="STR_gmc_main_gear_clearLine">
         <Original>Clear All</Original>
         <English>Clear All</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_spawnSelected">
+      <Key ID="STR_gmc_main_gear_spawnSelected">
         <Original>Spawn for Selected</Original>
         <English>Spawn for Selected</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_SpawnAll">
+      <Key ID="STR_gmc_main_gear_SpawnAll">
         <Original>Spawn For All</Original>
         <English>Spawn For All</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_gear_SpawnBox">
+      <Key ID="STR_gmc_main_gear_SpawnBox">
         <Original>Spawn Box</Original>
         <English>Spawn Box</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_functions_title">
+      <Key ID="STR_gmc_main_functions_title">
         <Original>Scripting Functions</Original>
         <English>Scripting Functions</English>
       </Key>
-      <Key ID="STR_A3_nbw_gm_map_toggleTexture">
+      <Key ID="STR_gmc_main_map_toggleTexture">
         <Original>Toggle</Original>
         <English>Toggle</English>
       </Key>

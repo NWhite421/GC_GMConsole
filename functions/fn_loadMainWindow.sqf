@@ -2,34 +2,33 @@
 #include "..\gui\guiMacros.hpp"
 
 IFunc_GetUnitColor = {
-  params ["_unit"];
+  params [["_unit", objNull, [objNull]]];
   switch (side _unit) do {
     case west: {
       _color = ["Map", "BLUFOR"] call BIS_fnc_displayColorGet;
-      systemChat str _color;
       _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
       _colorStr;
     };
     case east: {
       _color = ["Map", "OPFOR"] call BIS_fnc_displayColorGet;
-      systemChat str _color;
       _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
       _colorStr;
     };
     case independent: {
       _color = ["Map", "Independent"] call BIS_fnc_displayColorGet;
-      systemChat str _color;
       _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
       _colorStr;
     };
-    case civilian:
-    default {
+    case civilian: {
       _color = ["Map", "Civilian"] call BIS_fnc_displayColorGet;
-      systemChat str _color;
       _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
       _colorStr;
     };
-      //cases (insertable by snippet)
+    default {
+      _color = ["Map", "Unknown"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
   };
 };
 
@@ -77,6 +76,11 @@ if (GETVAR(_player, MapStatus, 0) == 0) then {
   (_control displayCtrl IDC_NBW_GM_MAP_NOTEXTURE) ctrlShow false;
 };
 
+if (GETVAR(player, MapMonitor, false)) then {
+  [IDC_NBW_GM_MAP_NOTEXTURE, 21092701] call FUNC(ShowIconOnMap);
+  [IDC_NBW_GM_MAP, 21092701] call FUNC(ShowIconOnMap);
+};
+
 [_control, IDC_NBW_GM_PLAYERS_FILTER_BLUFOR, _colorBlufor] call FUNC(SetButtonColor);
 [_control, IDC_NBW_GM_PLAYERS_FILTER_OPFOR, _colorRedfor] call FUNC(SetButtonColor);
 [_control, IDC_NBW_GM_PLAYERS_FILTER_INDFOR, _colorIndfor] call FUNC(SetButtonColor);
@@ -87,8 +91,7 @@ if (GETVAR(_player, MapStatus, 0) == 0) then {
 
 {
   _color = [_x] call IFunc_GetUnitColor;
-  _rankImage = [player,"texture"] call BIS_fnc_rankParams;
-  systemChat format ["The color for row %1 is %2", _forEachIndex+1, _color];
+  _rankImage = [_x,"texture"] call BIS_fnc_rankParams;
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbAddRow ["", "", name _x];
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,0],_color];
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,1],_rankImage];

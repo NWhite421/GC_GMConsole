@@ -30,35 +30,84 @@ FUNC(GetObjectMarker) = {
 FUNC(ShowIconOnMap) = {
   params ["_control", "_display"];
 
-  _handle = (findDisplay _display) displayCtrl _control ctrlAddEventHandler ["Draw", {  
-    {if (vehicle _x isKindOf "CAManBase") then { 
-      (_this select 0) drawIcon [  
-        (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
-        [_x] call FUNC(GetObjectSideColor),  
-        getPos _x,  
-        24,  
-        24,  
-        getDir _x,  
-        name _x,  
-        0   
-      ]; 
-      } else {  
-        if ((vehicle _x) isKindOf (typeOf _x)) then { 
-          (_this select 0) drawIcon [  
-            (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
-            [_x] call FUNC(GetObjectSideColor),
-            getPos _x,  
-            24,  
-            24,  
-            getDir _x,  
-            "Player Vehicle",  
-            0   
-          ]; 
-        }; 
-      }; 
+
+  _handle = (findDisplay _display) displayCtrl _control ctrlAddEventHandler ["Draw", 
+  {  
+    //hintSilent format ["%1 - %2\n%3 - %4", QGVAR(MapMonitor_ManIconSize), _textSize, QGVAR(MapMonitor_TextSize), _textSize];
+    _manSize = player getVariable QGVAR(MapMonitor_ManIconSize);
+    _vehSize = player getVariable QGVAR(MapMonitor_VehicleIconSize);
+    _textSize = player getVariable QGVAR(MapMonitor_TextSize);
+    _colorUnconscious = player getVariable QGVAR(MapMonitor_Unconscious);
+    _colorUnconscious pushBack 1;
+    {
+      if (isNull objectParent _x) then
+      // Man
+      {
+        if (vehicle _x isKindOf "CAManBase" && (isNull objectParent _x)) then [
+        { 
+          if (_x getVariable ["ACE_isUnconscious", false]) then [{
+            (_this select 0) drawIcon [  
+              (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
+              _colorUnconscious,  
+              getPos _x,  
+              if (_manSize != -1) then [{(_mansize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {24}],  
+              if (_manSize != -1) then [{(_mansize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {24}],  
+              getDir _x,  
+              name _x,  
+              0,
+              if (_textSize != 1) then [{(_textSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {.1}] 
+            ];
+          },{
+            (_this select 0) drawIcon [  
+              (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
+              [_x] call FUNC(GetObjectSideColor),  
+              getPos _x,  
+              if (_manSize != -1) then [{(_mansize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {24}],  
+              if (_manSize != -1) then [{(_mansize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {24}],  
+              getDir _x,  
+              name _x,  
+              0,
+              if (_textSize != 1) then [{(_textSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {.1}] 
+            ]; 
+          }]
+          
+        },
+        {
+          // Vehicles
+          if (!((vehicle _x) isKindOf "Thing") && (vehicle _x) isKindOf ("AllVehicles")) then { 
+            if (count (crew _x) == 0) then [{
+              (_this select 0) drawIcon [  
+                (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
+                ["Map", "Unknown"] call BIS_fnc_displayColorGet,
+                getPos _x,  
+                if (_vehSize != -1) then [{(_vehSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {50}],  
+                if (_vehSize != -1) then [{(_vehSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {50}], 
+                getDir _x,  
+                "", //TODO: Add dynamic name.
+                0,
+                (.02 * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))   
+              ]; 
+            },
+            {
+              (_this select 0) drawIcon [  
+                (gettext(configFile >> "CfgVehicles" >> (typeof _x) >> "icon")),  
+                [_x] call FUNC(GetObjectSideColor),
+                getPos _x,  
+                if (_vehSize != -1) then [{(_vehSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {50}],  
+                if (_vehSize != -1) then [{(_vehSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {50}], 
+                getDir _x,  
+                format ["%1 +%2", name (crew _x select 0), count (crew _x) -1], //TODO: Add dynamic name.
+                0,
+                if (_textSize != 1) then [{(_textSize * 0.15) * 10^(abs log (ctrlMapScale (_this select 0)))}, {.1}] 
+              ]; 
+            }];            
+          };
+        }]; 
+      };
     } foreach allUnits + vehicles; 
   }];
-  _handle;
+  _handles pushBack [_display, _control, _handle];
+  SETVAR(player, MapMonitorHandle, _handles);
 };
 
 _handles = GETVAR(player, MapMonitorHandle, []);
@@ -66,22 +115,22 @@ _mainMap = (findDisplay 12) displayCtrl 51;
 _mapNTMap = (findDisplay 21092701) displayCtrl IDC_NBW_GM_MAP_NOTEXTURE;
 _gmMap = (findDisplay 21092701) displayCtrl IDC_NBW_GM_MAP;
 
-if (count _handles == 0) then {
+if (count _handles == 0) then [{
   hint "Player tacker starting...";
-  {
-    _mainMapHandle = [51, 12] call FUNC(ShowIconOnMap);
-    _mapNTHandle = [IDC_NBW_GM_MAP_NOTEXTURE, 21092701] call FUNC(ShowIconOnMap);
-    _mapHandle = [IDC_NBW_GM_MAP, 21092701] call FUNC(ShowIconOnMap);
-    _handles pushBack [[_mainMap, _mainMapHandle], [_mapNTMap, _mapNTHandle], [_gmMap, _mapHandle]]
-  } foreach [allUnits + vehicles];
+  [51, 12] call FUNC(ShowIconOnMap);
+  //[13301, 311] call FUNC(ShowIconOnMap); //Minimap - fuck this.
+  SETVAR(player, MapMonitor, true);
   hint "Player tacker started";
-  
-} 
-else 
+},
 {
   hint "Player tacker ending...";
+  systemChat str _handles;
   {
-    (_x select 0) removeEventHandler ["Draw", (_this select 1)];
-  } foreach _handles;
+    // Current result is saved in variable _x
+    _x params ["_display", "_control", "_handle"];
+    ((findDisplay _display) displayCtrl _control) ctrlRemoveEventHandler ["Draw", _handle];
+  } forEach _handles;
+  SETVAR(player, MapMonitorHandle, []);
   hint "Player tacker ended";
-};
+  SETVAR(player, MapMonitor, false);
+}];
