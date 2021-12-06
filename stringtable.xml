@@ -95,32 +95,52 @@
         <English>OPFOR</English>
       </Key>
       <Key ID="STR_gmc_main_players_filter_opfor_tooltip">
+<<<<<<< HEAD
+        <Original>Show redfor players</Original>
+        <English>Show redfor players</English>
+=======
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
+>>>>>>> origin/dev
       </Key>
       <Key ID="STR_gmc_main_players_filter_indfor">
         <Original>INDFOR</Original>
         <English>INDFOR</English>
       </Key>
       <Key ID="STR_gmc_main_players_filter_indfor_tooltip">
+<<<<<<< HEAD
+        <Original>Show indfor players</Original>
+        <English>Show indfor players</English>
+=======
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
+>>>>>>> origin/dev
       </Key>
       <Key ID="STR_gmc_main_players_filter_civfor">
         <Original>CIVFOR</Original>
         <English>CIVFOR</English>
       </Key>
       <Key ID="STR_gmc_main_players_filter_civfor_tooltip">
+<<<<<<< HEAD
+        <Original>Show civilian players</Original>
+        <English>Show civilian players</English>
+=======
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
+>>>>>>> origin/dev
       </Key>
       <Key ID="STR_gmc_main_players_filter_includeAI">
         <Original>Include A.I.</Original>
         <English>Include A.I.</English>
       </Key>
       <Key ID="STR_gmc_main_players_filter_includeAI_tooltip">
+<<<<<<< HEAD
+        <Original>Include A.I. in player list.</Original>
+        <English>Include A.I. in player list.</English>
+=======
         <Original>Show blufor players</Original>
         <English>Show blufor players</English>
+>>>>>>> origin/dev
       </Key>
       <Key ID="STR_gmc_main_actions_title">
         <Original>Actions</Original>

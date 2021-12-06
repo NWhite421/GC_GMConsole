@@ -4,8 +4,11 @@
 if (true) then {
   waitUntil {!isNull player}; //&& !isNil QGVAR(AdminList)
 
-  SETVAR(player, MapStatus, 0);
-  SETVAR(player, MapMonitor, false);
+  player setVariable [QGVAR(MapMonitorEnabled), false];
+
+  player setVariable [QGVAR(PlayerListGroupWhitelist), [west,east,resistance,civilian]];
+  player setVariable [QGVAR(PlayerListIncludeAI), true];
+  
 
   // Settings
 

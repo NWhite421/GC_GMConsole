@@ -1,6 +1,8 @@
 #include "..\script_component.hpp"
 #include "..\gui\guiMacros.hpp"
 
+<<<<<<< HEAD
+=======
 IFunc_GetUnitColor = {
   params [["_unit", objNull, [objNull]]];
   switch (side _unit) do {
@@ -32,12 +34,13 @@ IFunc_GetUnitColor = {
   };
 };
 
+>>>>>>> origin/dev
 disableSerialization;
 
 params ["_player", "_args"];
 _args params ["_control"];
 
-systemChat "fn_loadMainWindow";
+systemChat _fnc_scriptName;
 
 _headerColor = ["GUI", "BCG_RGB"] call BIS_fnc_displayColorGet;
 _headerTextColor = ["GUI", "TITLETEXT_RGB"] call BIS_fnc_displayColorGet;
@@ -89,6 +92,22 @@ if (GETVAR(player, MapMonitor, false)) then {
 
 (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST_SORTER) lnbAddRow ["Side", "Rank", "Name"];
 
+<<<<<<< HEAD
+_playerList = (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST);
+_whiteList = player getVariable QGVAR(PlayerListGroupWhitelist);
+_includeAI = player getVariable QGVAR(PlayerListIncludeAI);
+[_playerList, _whiteList, _includeAI] call FUNC(populatePlayerList);
+
+// {
+//   _color = [_x] call IFunc_GetUnitColor;
+//   _rankImage = [_x,"texture"] call BIS_fnc_rankParams;
+//   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbAddRow ["", "", name _x];
+//   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,0],_color];
+//   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,1],_rankImage];
+// } forEach allUnits;
+
+
+=======
 {
   _color = [_x] call IFunc_GetUnitColor;
   _rankImage = [_x,"texture"] call BIS_fnc_rankParams;
@@ -96,8 +115,8 @@ if (GETVAR(player, MapMonitor, false)) then {
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,0],_color];
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,1],_rankImage];
 } forEach allUnits;
+>>>>>>> origin/dev
 [
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST_SORTER),
-  (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST),
-  [2]
+  (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST)
 ] call BIS_fnc_initListNBoxSorting;
