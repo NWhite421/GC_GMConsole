@@ -1,8 +1,8 @@
-class nbw_gm_console {
+class GVAR(MainConsole) {
   idd = 21092701;
   enableSimulation = 1;
 	MovingEnabled = 0;
-	name = "NBW_GM_CONSOLE";
+	name = QGVAR(MainConsole);
 	onLoad = QUOTE([ARR_2(player,_this)] call FUNC(LoadMainWindow));
 	onUnload = "true;";
   class controls {
@@ -22,7 +22,7 @@ class nbw_gm_console {
     class nbw_gm_Title: RscText
     {
     	idc = IDC_NBW_GM_TITLE;
-    	text = $STR_A3_nbw_gm_Title;
+    	text = CSTRING(Title);
     	x = 0.0565625 * safezoneW + safezoneX;
     	y = 0.06 * safezoneH + safezoneY;
     	w = 0.876562 * safezoneW;
@@ -32,7 +32,7 @@ class nbw_gm_console {
     class nbw_gm_close: RscButton
     {
     	idc = IDC_NBW_GM_CLOSE;
-    	text = $STR_A3_nbw_gm_close;
+    	text = CSTRING(close);
     	x = 0.933125 * safezoneW + safezoneX;
     	y = 0.06 * safezoneH + safezoneY;
     	w = 0.0154688 * safezoneW;
@@ -62,21 +62,22 @@ class nbw_gm_console {
     class nbw_gm_map_mapMonitor: RscButton
     {
     	idc = IDC_NBW_GM_MAP_MAPMONITOR;
-    	text = $STR_A3_nbw_gm_map_mapMonitor;
+    	text = CSTRING(MapMonitor);
     	x = 0.309219 * safezoneW + safezoneX;
     	y = 0.753 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
     	h = 0.022 * safezoneH;
+		onButtonClick = QUOTE([] call FUNC(mapMonitor); false;);
     };
     class nbw_gm_map_toggleTexture: RscButton
     {
     	idc = IDC_NBW_GM_MAP_TOGGLE;
-    	text = $STR_A3_nbw_gm_map_toggleTexture;
+    	text = CSTRING(map_toggleTexture);
     	x = 0.371094 * safezoneW + safezoneX;
     	y = 0.753 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
     	h = 0.022 * safezoneH;
-      onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(ToggleMap));
+      onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(ToggleMap); false;);
     };
     class nbw_gm_bg_mapInfo: IGUIBack
     {
@@ -89,7 +90,7 @@ class nbw_gm_console {
     class nbw_gm_MapProperties_Title: RscText
     {
     	idc = IDC_NBW_GM_MAPPROPERTIES_TITLE;
-    	text = $STR_A3_nbw_gm_MapProperties_Title;
+    	text = CSTRING(MapProperties_Title);
     	x = 0.0617187 * safezoneW + safezoneX;
     	y = 0.786 * safezoneH + safezoneY;
     	w = 0.366094 * safezoneW;
@@ -115,7 +116,7 @@ class nbw_gm_console {
     class nbw_gm_Players_Title: RscText
     {
     	idc = IDC_NBW_GM_PLAYERS_TITLE;
-    	text = $STR_A3_nbw_gm_Players_Title;
+    	text = CSTRING(Players_Title);
     	x = 0.432969 * safezoneW + safezoneX;
     	y = 0.093 * safezoneH + safezoneY;
     	w = 0.252656 * safezoneW;
@@ -129,12 +130,12 @@ class nbw_gm_console {
     	y = 0.126 * safezoneH + safezoneY;
     	w = 0.221719 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_search_tooltip;
+    	tooltip = CSTRING(players_search_tooltip);
     };
     class nbw_gm_player_search_submit: RscButton
     {
     	idc = IDC_NBW_GM_PLAYER_SEARCH_SUBMIT;
-    	text = $STR_A3_nbw_gm_player_search_submit;
+    	text = CSTRING(player_search_submit);
     	x = 0.659844 * safezoneW + safezoneX;
     	y = 0.126 * safezoneH + safezoneY;
     	w = 0.0103125 * safezoneW;
@@ -143,12 +144,12 @@ class nbw_gm_console {
     class nbw_gm_player_search_clear: RscButton
     {
     	idc = IDC_NBW_GM_PLAYER_SEARCH_CLEAR;
-    	text = $STR_A3_nbw_gm_player_search_clear;
+    	text = CSTRING(player_search_clear);
     	x = 0.670156 * safezoneW + safezoneX;
     	y = 0.126 * safezoneH + safezoneY;
     	w = 0.0103125 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_player_search_clear_tooltip;
+    	tooltip = CSTRING(player_search_clear_tooltip);
     };
     class nbw_gm_players_list_sorter: RscListNBox
     {
@@ -157,73 +158,78 @@ class nbw_gm_console {
     	y = 0.159 * safezoneH + safezoneY;
     	w = 0.242344 * safezoneW;
     	h = 0.022 * safezoneH;
-      columns[] = {0,0.1,0.2};
+      columns[] = {0,0.2,0.4};
     };
     class nbw_gm_players_list: RscListNBox
     {
     	idc = IDC_NBW_GM_PLAYERS_LIST;
-      style = LB_MULTI;
+      	style = LB_MULTI;
     	x = 0.438125 * safezoneW + safezoneX;
     	y = 0.181 * safezoneH + safezoneY;
     	w = 0.242344 * safezoneW;
     	h = 0.275 * safezoneH;
-      drawSideArrows = 0;
-      columns[] = {0,0.1,0.2};
+      	drawSideArrows = 0;
+      	columns[] = {0,0.2,0.4};
     };
     class nbw_gm_players_filter_blufor: RscButton
     {
     	idc = IDC_NBW_GM_PLAYERS_FILTER_BLUFOR;
-    	text = $STR_A3_nbw_gm_players_filter_blufor;
+    	text = CSTRING(players_filter_blufor);
     	x = 0.438125 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_filter_blufor_tooltip;
+    	tooltip = CSTRING(players_filter_blufor_tooltip);
+		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
     };
     class nbw_gm_players_filter_opfor: RscButton
     {
     	idc = IDC_NBW_GM_PLAYERS_FILTER_OPFOR;
-    	text = $STR_A3_nbw_gm_players_filter_opfor;
+    	text = CSTRING(players_filter_opfor);
     	x = 0.484531 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_filter_opfor_tooltip;
+    	tooltip = CSTRING(players_filter_opfor_tooltip);
+		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
     };
     class nbw_gm_players_filter_indfor: RscButton
     {
     	idc = IDC_NBW_GM_PLAYERS_FILTER_INDFOR;
-    	text = $STR_A3_nbw_gm_players_filter_indfor;
+    	text = CSTRING(players_filter_indfor);
     	x = 0.530937 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_filter_indfor_tooltip;
+    	tooltip = CSTRING(players_filter_indfor_tooltip);
+		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
     };
     class nbw_gm_players_filter_civfor: RscButton
     {
     	idc = IDC_NBW_GM_PLAYERS_FILTER_CIVFOR;
-    	text = $STR_A3_nbw_gm_players_filter_civfor;
+    	text = CSTRING(players_filter_civfor);
     	x = 0.577344 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_filter_civfor_tooltip;
+    	tooltip = CSTRING(players_filter_civfor_tooltip);
+		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
     };
     class nbw_gm_players_filter_includeAI: RscButton
     {
     	idc = IDC_NBW_GM_PLAYERS_FILTER_INCLUDEAI;
-    	text = $STR_A3_nbw_gm_players_filter_includeAI;
+    	text = CSTRING(players_filter_includeAI);
     	x = 0.62375 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_players_filter_includeAI_tooltip;
+    	tooltip = CSTRING(players_filter_includeAI_tooltip);
+		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
     };
     class nbw_gm_actions_title: RscText
     {
     	idc = IDC_NBW_GM_ACTIONS_TITLE;
-    	text = $STR_A3_nbw_gm_actions_title;
+    	text = CSTRING(actions_title);
     	x = 0.432969 * safezoneW + safezoneX;
     	y = 0.511 * safezoneH + safezoneY;
     	w = 0.252656 * safezoneW;
@@ -233,7 +239,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph1: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH1;
-    	text = $STR_A3_nbw_gm_actions_ph1;
+    	text = CSTRING(placeholder);
     	x = 0.438125 * safezoneW + safezoneX;
     	y = 0.544 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -242,7 +248,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph2: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH2;
-    	text = $STR_A3_nbw_gm_actions_ph2;
+    	text = CSTRING(placeholder);
     	x = 0.520625 * safezoneW + safezoneX;
     	y = 0.544 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -251,7 +257,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph3: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH3;
-    	text = $STR_A3_nbw_gm_actions_ph3;
+    	text = CSTRING(placeholder);
     	x = 0.603125 * safezoneW + safezoneX;
     	y = 0.544 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -260,7 +266,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph4: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH4;
-    	text = $STR_A3_nbw_gm_actions_ph4;
+    	text = CSTRING(placeholder);
     	x = 0.438125 * safezoneW + safezoneX;
     	y = 0.577 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -269,7 +275,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph5: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH5;
-    	text = $STR_A3_nbw_gm_actions_ph5;
+    	text = CSTRING(placeholder);
     	x = 0.520625 * safezoneW + safezoneX;
     	y = 0.577 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -278,7 +284,7 @@ class nbw_gm_console {
     class nbw_gm_actions_ph6: RscButton
     {
     	idc = IDC_NBW_GM_ACTIONS_PH6;
-    	text = $STR_A3_nbw_gm_actions_ph6;
+    	text = CSTRING(placeholder);
     	x = 0.603125 * safezoneW + safezoneX;
     	y = 0.577 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -295,7 +301,7 @@ class nbw_gm_console {
     class nbw_gm_gear_title: RscText
     {
     	idc = IDC_NBW_GM_GEAR_TITLE;
-    	text = $STR_A3_nbw_gm_gear_title;
+    	text = CSTRING(gear_title);
     	x = 0.690781 * safezoneW + safezoneX;
     	y = 0.093 * safezoneH + safezoneY;
     	w = 0.252656 * safezoneW;
@@ -321,17 +327,17 @@ class nbw_gm_console {
     class nbw_gm_gear_count: RscEdit
     {
     	idc = IDC_NBW_GM_GEAR_COUNT;
-    	text = $STR_A3_nbw_gm_gear_count;
+    	text = CSTRING(gear_count);
     	x = 0.912501 * safezoneW + safezoneX;
     	y = 0.148 * safezoneH + safezoneY;
     	w = 0.0257812 * safezoneW;
     	h = 0.022 * safezoneH;
-    	tooltip = $STR_A3_nbw_gm_gear_count_tooltip;
+    	tooltip = CSTRING(gear_count_tooltip);
     };
     class nbw_gm_gear_add: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_ADD;
-    	text = $STR_A3_nbw_gm_gear_add;
+    	text = CSTRING(gear_add);
     	x = 0.695937 * safezoneW + safezoneX;
     	y = 0.17 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
@@ -348,7 +354,7 @@ class nbw_gm_console {
     class nbw_gm_gear_removeOne: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_REMOVEONE;
-    	text = $STR_A3_nbw_gm_gear_removeOne;
+    	text = CSTRING(gear_removeOne);
     	x = 0.757813 * safezoneW + safezoneX;
     	y = 0.17 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
@@ -357,7 +363,7 @@ class nbw_gm_console {
     class nbw_gm_gear_RemoveLine: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_REMOVELINE;
-    	text = $STR_A3_nbw_gm_gear_RemoveLine;
+    	text = CSTRING(gear_RemoveLine);
     	x = 0.819688 * safezoneW + safezoneX;
     	y = 0.17 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
@@ -366,7 +372,7 @@ class nbw_gm_console {
     class nbw_gm_gear_clearLine: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_CLEARLINE;
-    	text = $STR_A3_nbw_gm_gear_clearLine;
+    	text = CSTRING(gear_clearLine);
     	x = 0.881562 * safezoneW + safezoneX;
     	y = 0.17 * safezoneH + safezoneY;
     	w = 0.0567187 * safezoneW;
@@ -375,7 +381,7 @@ class nbw_gm_console {
     class nbw_gm_gear_spawnSelected: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_SPAWNSELECTED;
-    	text = $STR_A3_nbw_gm_gear_spawnSelected;
+    	text = CSTRING(gear_spawnSelected);
     	x = 0.695937 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -384,7 +390,7 @@ class nbw_gm_console {
     class nbw_gm_gear_SpawnAll: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_SPAWNALL;
-    	text = $STR_A3_nbw_gm_gear_SpawnAll;
+    	text = CSTRING(gear_SpawnAll);
     	x = 0.778437 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -393,7 +399,7 @@ class nbw_gm_console {
     class nbw_gm_gear_SpawnBox: RscButton
     {
     	idc = IDC_NBW_GM_GEAR_SPAWNBOX;
-    	text = $STR_A3_nbw_gm_gear_SpawnBox;
+    	text = CSTRING(gear_SpawnBox);
     	x = 0.860937 * safezoneW + safezoneX;
     	y = 0.467 * safezoneH + safezoneY;
     	w = 0.0773437 * safezoneW;
@@ -410,7 +416,7 @@ class nbw_gm_console {
     class nbw_gm_functions_title: RscText
     {
     	idc = IDC_NBW_GM_FUNCTIONS_TITLE;
-    	text = $STR_A3_nbw_gm_functions_title;
+    	text = CSTRING(functions_title);
     	x = 0.690781 * safezoneW + safezoneX;
     	y = 0.511 * safezoneH + safezoneY;
     	w = 0.252656 * safezoneW;
