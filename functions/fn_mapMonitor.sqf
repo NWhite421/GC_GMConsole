@@ -30,6 +30,7 @@ FUNC(GetObjectMarker) = {
 FUNC(ShowIconOnMap) = {
   params ["_control", "_display"];
 
+<<<<<<< HEAD
   _map = (findDisplay _display) displayCtrl _control;
 
   if (isNull _map) exitWith {
@@ -37,6 +38,10 @@ FUNC(ShowIconOnMap) = {
   };
 
   _handle = _map ctrlAddEventHandler ["Draw", 
+=======
+
+  _handle = (findDisplay _display) displayCtrl _control ctrlAddEventHandler ["Draw", 
+>>>>>>> origin/dev
   {  
     //hintSilent format ["%1 - %2\n%3 - %4", QGVAR(MapMonitor_ManIconSize), _textSize, QGVAR(MapMonitor_TextSize), _textSize];
     _manSize = player getVariable QGVAR(MapMonitor_ManIconSize);
@@ -123,10 +128,15 @@ _gmMap = (findDisplay 21092701) displayCtrl IDC_NBW_GM_MAP;
 if (count _handles == 0) then [{
   hint "Player tacker starting...";
   [51, 12] call FUNC(ShowIconOnMap);
+<<<<<<< HEAD
   // [IDC_NBW_GM_MAP_NOTEXTURE, 21092701] call FUNC(ShowIconOnMap);
   // [IDC_NBW_GM_MAP, 21092701] call FUNC(ShowIconOnMap);
   //[13301, 311] call FUNC(ShowIconOnMap); //Minimap - fuck this.
   player setVariable [QGVAR(MapMonitorEnabled), true];
+=======
+  //[13301, 311] call FUNC(ShowIconOnMap); //Minimap - fuck this.
+  SETVAR(player, MapMonitor, true);
+>>>>>>> origin/dev
   hint "Player tacker started";
 },
 {
@@ -139,5 +149,9 @@ if (count _handles == 0) then [{
   } forEach _handles;
   SETVAR(player, MapMonitorHandle, []);
   hint "Player tacker ended";
+<<<<<<< HEAD
   player setVariable [QGVAR(MapMonitorEnabled), false];
+=======
+  SETVAR(player, MapMonitor, false);
+>>>>>>> origin/dev
 }];

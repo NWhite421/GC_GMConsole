@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // File: fn_populatePlayerList.sqf
 // Project: functions
 // Created date: 2021 10 03 - 11:04:25AM 
@@ -57,3 +58,12 @@ lnbClear _control;
 	};
 
 } foreach allUnits;
+=======
+#include "..\script_component.hpp"
+
+params [
+	["_control", controlNull, [controlNull]],
+	["_sideWhitelist", [], [[]]],
+	["_includeAI", false, [true]]
+];
+>>>>>>> origin/dev

@@ -1,6 +1,40 @@
 #include "..\script_component.hpp"
 #include "..\gui\guiMacros.hpp"
 
+<<<<<<< HEAD
+=======
+IFunc_GetUnitColor = {
+  params [["_unit", objNull, [objNull]]];
+  switch (side _unit) do {
+    case west: {
+      _color = ["Map", "BLUFOR"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
+    case east: {
+      _color = ["Map", "OPFOR"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
+    case independent: {
+      _color = ["Map", "Independent"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
+    case civilian: {
+      _color = ["Map", "Civilian"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
+    default {
+      _color = ["Map", "Unknown"] call BIS_fnc_displayColorGet;
+      _colorStr = _color call BIS_fnc_colorRGBAtoTexture;
+      _colorStr;
+    };
+  };
+};
+
+>>>>>>> origin/dev
 disableSerialization;
 
 params ["_player", "_args"];
@@ -58,6 +92,7 @@ if (GETVAR(player, MapMonitor, false)) then {
 
 (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST_SORTER) lnbAddRow ["Side", "Rank", "Name"];
 
+<<<<<<< HEAD
 _playerList = (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST);
 _whiteList = player getVariable QGVAR(PlayerListGroupWhitelist);
 _includeAI = player getVariable QGVAR(PlayerListIncludeAI);
@@ -72,6 +107,15 @@ _includeAI = player getVariable QGVAR(PlayerListIncludeAI);
 // } forEach allUnits;
 
 
+=======
+{
+  _color = [_x] call IFunc_GetUnitColor;
+  _rankImage = [_x,"texture"] call BIS_fnc_rankParams;
+  (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbAddRow ["", "", name _x];
+  (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,0],_color];
+  (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST) lnbSetPicture [[_forEachIndex,1],_rankImage];
+} forEach allUnits;
+>>>>>>> origin/dev
 [
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST_SORTER),
   (_control displayCtrl IDC_NBW_GM_PLAYERS_LIST)

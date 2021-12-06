@@ -180,7 +180,10 @@ class GVAR(MainConsole) {
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
     	tooltip = CSTRING(players_filter_blufor_tooltip);
+<<<<<<< HEAD
 		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
+=======
+>>>>>>> origin/dev
     };
     class nbw_gm_players_filter_opfor: RscButton
     {
@@ -191,7 +194,10 @@ class GVAR(MainConsole) {
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
     	tooltip = CSTRING(players_filter_opfor_tooltip);
+<<<<<<< HEAD
 		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
+=======
+>>>>>>> origin/dev
     };
     class nbw_gm_players_filter_indfor: RscButton
     {
@@ -202,7 +208,10 @@ class GVAR(MainConsole) {
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
     	tooltip = CSTRING(players_filter_indfor_tooltip);
+<<<<<<< HEAD
 		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
+=======
+>>>>>>> origin/dev
     };
     class nbw_gm_players_filter_civfor: RscButton
     {
@@ -213,7 +222,10 @@ class GVAR(MainConsole) {
     	w = 0.04125 * safezoneW;
     	h = 0.022 * safezoneH;
     	tooltip = CSTRING(players_filter_civfor_tooltip);
+<<<<<<< HEAD
 		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
+=======
+>>>>>>> origin/dev
     };
     class nbw_gm_players_filter_includeAI: RscButton
     {
@@ -224,7 +236,10 @@ class GVAR(MainConsole) {
     	w = 0.0567187 * safezoneW;
     	h = 0.022 * safezoneH;
     	tooltip = CSTRING(players_filter_includeAI_tooltip);
+<<<<<<< HEAD
 		onButtonClick = QUOTE([ARR_2(player,_this)] call FUNC(updatePlayerFilter); false;);
+=======
+>>>>>>> origin/dev
     };
     class nbw_gm_actions_title: RscText
     {

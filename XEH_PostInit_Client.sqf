@@ -31,3 +31,11 @@ if (true) then {
   [player, 1, ["ACE_SelfActions", QGVAR(GMCategory)], _openMenu] call ace_interact_menu_fnc_addActionToObject;
     
 };
+
+["CBA_SettingChanged", {
+    params ["_setting", "_value"];
+	  if ((_setting find "gmc_main") == -1) exitWith {};
+	  player setVariable [_setting, _value];
+    systemChat format ["%1 = %2", _setting, _value];
+	copyToClipboard str _setting;
+}] call CBA_fnc_addEventHandler;
